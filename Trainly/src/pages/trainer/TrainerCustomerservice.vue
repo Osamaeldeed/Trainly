@@ -154,6 +154,7 @@
   </div>
 </template>
 
+
 <script>
 import emailjs from "emailjs-com";
 import { onAuthStateChanged } from "firebase/auth";
