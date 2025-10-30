@@ -84,31 +84,7 @@
             <img src="@/assets/images/Project LOGO.png" class="h-8 w-25 me-3" alt="Logo" />
           </li>
 
-          <!-- ✅ Back to Home Button -->
-          <li class="mb-6">
-            <router-link
-              to="/traineehome"
-              class="flex items-center p-2 text-white bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg hover:from-blue-600 hover:to-blue-700 transition duration-300 shadow-md"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-5 h-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M10 19l-7-7m0 0l7-7m-7 7h18"
-                />
-              </svg>
-              <span class="ms-3 font-medium">Back to Home</span>
-            </router-link>
-          </li>
-
-          <li>
+<li>
             <router-link
               to="/trainee/mytrainers"
               class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-blue-200 transition duration-300"
@@ -185,7 +161,90 @@
 
 
 <script>
+import { ref, onMounted } from "vue";
+import { getFirestore, doc, getDoc } from "firebase/firestore";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { useRouter } from "vue-router";
+import ConfirmLogoutModal from "../components/ConfirmLogoutModal.vue";
+
 export default {
-    name: "SideBarAdmin",
-}
+  name: "SideBarAdmin",
+  components: { ConfirmLogoutModal },
+  setup() {
+    const isSidebarOpen = ref(false);
+
+    const traineeImage = ref("");
+    const showLogoutModal = ref(false);
+    const db = getFirestore();
+    const auth = getAuth();
+    const router = useRouter();
+
+
+
+    const toggleSidebar = () => {
+      isSidebarOpen.value = !isSidebarOpen.value;
+    };
+
+    const fetchTraineeImage = async (uid) => {
+      try {
+        const docRef = doc(db, "users", uid);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          traineeImage.value =
+            docSnap.data().profilePicture ||
+            "https://media1.tenor.com/m/IfbOs_yh89AAAAAC/loading-buffering.gif";
+        }
+      } catch (error) {
+        console.error("Error fetching trainee data:", error);
+      }
+    };
+
+    const handleLogout = () => {
+      showLogoutModal.value = true;
+    };
+
+    const confirmLogout = async () => {
+      try {
+        await signOut(auth);
+        router.push("/");
+      } catch (error) {
+        console.error("Error logging out:", error);
+      }
+    };
+
+    const cancelLogout = () => {
+      console.log("Logout cancelled");
+    };
+
+    onMounted(() => {
+      onAuthStateChanged(auth, (user) => {
+        if (user) fetchTraineeImage(user.uid);
+      });
+    });
+
+    return {
+      isSidebarOpen,
+      toggleSidebar,
+      traineeImage,
+      handleLogout,
+      showLogoutModal,
+      confirmLogout,
+      cancelLogout,
+    };
+  },
+};
 </script>
+
+<style scoped>
+.bg-all {
+  background: #d9eeff;
+}
+.router-link-active {
+  background-color: #83d3f7 !important;
+  color: #000;
+  font-weight: 600;
+}
+.router-link-active img {
+  filter: invert(29%) sepia(83%) saturate(749%) hue-rotate(181deg) brightness(95%) contrast(90%);
+}
+</style>
