@@ -97,6 +97,18 @@ const routes = [
     ],
   },
   { path: "/:pathMatch(.*)*", name: "error", component: ErrorPage },
+  
+   {
+    path: "/admin",
+    name: "admin",
+    component: AdminDashboardLayout,
+    children: [
+      { path: "overview", name: "overview", component: AdminOverview },
+      { path: "managetrainees", name: "managetrainees", component: ManageTrainees },
+      { path: "managetrainers", name: "managetrainers", component: ManageTrainers },
+    
+    ],
+  },
 ];
 
 const router = createRouter({
@@ -173,6 +185,10 @@ router.beforeEach(async (to, from, next) => {
 // ✅ متابعة حالة المستخدم
 // ----------------------------
 import { onAuthStateChanged } from "firebase/auth";
+import AdminDashboardLayout from "./pages/Admin/AdminDashboardLayout.vue";
+import AdminOverview from "./pages/Admin/AdminOverview.vue";
+import ManageTrainees from "./pages/Admin/ManageTrainees.vue";
+import ManageTrainers from "./pages/Admin/ManageTrainers.vue";
 
 onAuthStateChanged(auth, (user) => {
   if (user) {

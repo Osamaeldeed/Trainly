@@ -1,28 +1,30 @@
 <template>
   <div>
     <NavBar
-      v-if="!['payment', 'failed', 'error', 'resetpassword', 'resetpassword2', 'forgetpassword1', 'forgetpassword2', 'login', 'signup', 'trainerclient','trainer','trainerreviews','trainersettings' , 'traineesettings' , 'trainee' ,'trainerplans','trainercustomerservice','traineecustomerservice' , 'trainerhome' , 'traineehome' , 'traineedashboard' , 'aboutustrainee' , 'sportstrainee' , 'contactustrainee' , 'search' , 'profile' , 'trainerviewprofile'].includes($route.name)"
+      v-if="!['payment', 'failed', 'error', 'resetpassword', 'resetpassword2', 'forgetpassword1', 'forgetpassword2', 'login', 'signup', 'trainerclient','trainer','trainerreviews','trainersettings' , 'traineesettings' , 'trainee' ,'trainerplans','trainercustomerservice','traineecustomerservice' , 'trainerhome' , 'traineehome' , 'traineedashboard' , 'aboutustrainee' , 'sportstrainee' , 'contactustrainee' , 'search' , 'profile' , 'trainerviewprofile','overview','managetrainers','managetrainees'].includes($route.name)"
     />
 
     <SideBar
-      v-if="!['landing', 'payment', 'failed', 'error', 'resetpassword', 'resetpassword2', 'forgetpassword1', 'forgetpassword2', 'login', 'signup', 'aboutus' , 'sports' , 'contactus' , 'traineesettings', 'trainee', 'traineehome', 'traineecustomerservice' , 'traineedashboard' , 'aboutustrainee' , 'sportstrainee' , 'contactustrainee' , 'profile' , 'search' , 'trainerviewprofile'].includes($route.name)"
+      v-if="!['landing', 'payment', 'failed', 'error', 'resetpassword', 'resetpassword2', 'forgetpassword1', 'forgetpassword2', 'login', 'signup', 'aboutus' , 'sports' , 'contactus' , 'traineesettings', 'trainee', 'traineehome', 'traineecustomerservice' , 'traineedashboard' , 'aboutustrainee' , 'sportstrainee' , 'contactustrainee' , 'profile' , 'search' , 'trainerviewprofile','overview','managetrainers','managetrainees'].includes($route.name)"
     />
 
     <SideBarTrainee
-       v-if="!['landing', 'payment', 'failed', 'error', 'resetpassword', 'resetpassword2', 'forgetpassword1', 'forgetpassword2', 'login', 'signup', 'aboutus' , 'sports' , 'contactus' , 'trainerclient' , 'trainerreviews' ,'trainersettings' , 'trainer' , 'trainerplans','trainerhome' , 'trainercustomerservice' ,'traineehome' , 'aboutustrainee' , 'sportstrainee' , 'contactustrainee', 'profile' , 'search' , 'trainerviewprofile'].includes($route.name)"
+       v-if="!['landing', 'payment', 'failed', 'error', 'resetpassword', 'resetpassword2', 'forgetpassword1', 'forgetpassword2', 'login', 'signup', 'aboutus' , 'sports' , 'contactus' , 'trainerclient' , 'trainerreviews' ,'trainersettings' , 'trainer' , 'trainerplans','trainerhome' , 'trainercustomerservice' ,'traineehome' , 'aboutustrainee' , 'sportstrainee' , 'contactustrainee', 'profile' , 'search' , 'trainerviewprofile','overview','managetrainers','managetrainees'].includes($route.name)"
     />
-
+    <SideBarAdmin
+      v-if="!['landing', 'payment', 'failed', 'error', 'resetpassword', 'resetpassword2', 'forgetpassword1', 'forgetpassword2', 'login', 'signup', 'aboutus' , 'sports' , 'contactus' , 'trainerclient' , 'trainerreviews' ,'trainersettings' , 'trainer' , 'trainerplans','trainerhome' , 'trainercustomerservice' , 'traineecustomerservice' , 'traineedashboard' , 'traineesettings' , 'trainerdashboard' , 'traineehome' , 'profile' , 'search' , 'aboutustrainee' , 'sportstrainee' , 'contactustrainee'].includes($route.name)"
+    />
     <TraineeNavbar
-      v-if="!['landing', 'payment', 'failed', 'error', 'resetpassword', 'resetpassword2', 'forgetpassword1', 'forgetpassword2', 'login', 'signup', 'aboutus' , 'sports' , 'contactus' , 'trainerclient' , 'trainerreviews' ,'trainersettings' , 'trainer' , 'trainerplans','trainerhome' , 'trainercustomerservice' , 'traineecustomerservice' , 'traineedashboard' , 'traineesettings' , 'trainerviewprofile'].includes($route.name)"
+      v-if="!['landing', 'payment', 'failed', 'error', 'resetpassword', 'resetpassword2', 'forgetpassword1', 'forgetpassword2', 'login', 'signup', 'aboutus' , 'sports' , 'contactus' , 'trainerclient' , 'trainerreviews' ,'trainersettings' , 'trainer' , 'trainerplans','trainerhome' , 'trainercustomerservice' , 'traineecustomerservice' , 'traineedashboard' , 'traineesettings' , 'trainerviewprofile','overview','managetrainers','managetrainees'].includes($route.name)"
     />
 
     <TrainerNavbar
-      v-if="!['landing', 'payment', 'failed', 'error', 'resetpassword', 'resetpassword2', 'forgetpassword1', 'forgetpassword2', 'login', 'signup', 'aboutus' , 'sports' , 'contactus' , 'trainerclient' , 'trainerreviews' ,'trainersettings' , 'trainer' , 'trainerplans','trainerhome' , 'trainercustomerservice' , 'traineecustomerservice' , 'traineedashboard' , 'traineesettings' , 'trainerdashboard' , 'traineehome' , 'profile' , 'search' , 'aboutustrainee' , 'sportstrainee' , 'contactustrainee'].includes($route.name)"
+      v-if="!['landing', 'payment', 'failed', 'error', 'resetpassword', 'resetpassword2', 'forgetpassword1', 'forgetpassword2', 'login', 'signup', 'aboutus' , 'sports' , 'contactus' , 'trainerclient' , 'trainerreviews' ,'trainersettings' , 'trainer' , 'trainerplans','trainerhome' , 'trainercustomerservice' , 'traineecustomerservice' , 'traineedashboard' , 'traineesettings' , 'trainerdashboard' , 'traineehome' , 'profile' , 'search' , 'aboutustrainee' , 'sportstrainee' , 'contactustrainee','overview','managetrainers','managetrainees'].includes($route.name)"
     />
     <router-view />
 
     <FooterComp
-      v-if="!['payment', 'failed', 'error', 'login', 'signup', 'trainerclient' , 'trainer' , 'trainerreviews','trainersettings' , 'traineesettings' , 'trainer' , 'trainee' ,'trainerplans','traineecustomerservice','trainercustomerservice' , 'trainerhome',  , 'traineedashboard'].includes($route.name)"
+      v-if="!['payment', 'failed', 'error', 'login', 'signup', 'trainerclient' , 'trainer' , 'trainerreviews','trainersettings' , 'traineesettings' , 'trainer' , 'trainee' ,'trainerplans','traineecustomerservice','trainercustomerservice' , 'trainerhome',  , 'traineedashboard','overview','managetrainers','managetrainees'].includes($route.name)"
     />
   </div>
 </template>
@@ -31,6 +33,7 @@
 import FooterComp from "./components/FooterComp.vue";
 import NavBar from "./components/NavBar.vue";
 import SideBar from "./components/SideBar.vue";
+import SideBarAdmin from "./components/SideBarAdmin.vue";
 import SideBarTrainee from './components/SideBarTrainee.vue';
 import TraineeNavbar from "./components/TraineeNavbar.vue";
 import TrainerNavbar from "./components/TrainerNavbar.vue";
@@ -44,6 +47,7 @@ export default {
     SideBarTrainee,
     TraineeNavbar,
     TrainerNavbar,
+    SideBarAdmin,
   },
 };
 </script>
