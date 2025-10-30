@@ -100,7 +100,7 @@
               class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-blue-200 transition duration-300"
             >
               <img src="@/assets/images/grommet-icons_plan.png" alt="" class="w-5 h-5" />
-              <span class="ms-3">My Plans</span>
+              <span class="ms-3">manage</span>
             </router-link>
           </li>
 
